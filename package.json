@@ -23,6 +23,7 @@
   "devDependencies": {
     "autoprefixer": "^10.0.1",
     "babel-eslint": "^10.1.0",
+    "babel-plugin-react-html-attrs": "^3.0.5",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "postcss": "^8",

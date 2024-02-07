@@ -2,32 +2,27 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSearchParams } from "next/navigation";
 import logo from "/src/logo.png";
 import search from "/src/search.png";
 import technology from "/src/technology.png";
 import Table from "/src/utils/UseTable";
 import callAPI from "/src/services/Service";
+
 const result = callAPI();
 var id = Promise.resolve(result).then((value) => {
   id = value[0];
 });
 
 function Page() {
-  const [folio, setFolio] = useState("");
+  const searchParams = useSearchParams();
+  const searchId = searchParams.get("id");
+  console.log("hola " + searchId);
+  const [folio, setFolio] = useState(searchId);
   const [submitClicked, setSubmitClicked] = useState(false);
   const { handleSubmit } = useForm();
   const onSubmit = () => {
-    if (folio.trim() === id) {
-      setSubmitClicked(true);
-      setFolio("");
-    } else if (folio.trim() === "") {
-      setSubmitClicked(false);
-      alert("Necesita ingresar la informacion");
-    } else {
-      setSubmitClicked(false);
-      setFolio("");
-      alert("No existe el folio");
-    }
+    setSubmitClicked(true);
   };
 
   return (
@@ -43,8 +38,8 @@ function Page() {
               backgroundPosition: "center",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
-              width: "100vw",
-              height: "100vh",
+              width: "auto",
+              height: "60vh",
               alignItems: "center",
               justifyContent: "center",
             }}
@@ -58,27 +53,21 @@ function Page() {
                 width: "100%",
               }}
             >
-              <Image src={search} alt="search" height={20} width={20} />
-              <div>
-                <input
-                  type="text"
-                  placeholder="Buscar..."
-                  value={folio}
-                  onChange={(e) => setFolio(e.target.value)}
-                />
-                <button
-                  style={{
-                    backgroundColor: "#e7e7e7",
-                    color: "black",
-                    border: "2px solid black",
-                  }}
-                  type="submit"
-                >
-                  Buscar
-                </button>
-              </div>
+              <Image src={search} alt="search" height={35} width={35} />
+              <input
+                class="appearance-none block bg-white-200 text-black-700 border border-blue-700 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white"
+                type="text"
+                value={folio}
+                readonly="readonly"
+                onChange={(e) => setFolio(e.target.value)}
+              />
+              <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                type="submit"
+              >
+                Buscar
+              </button>
             </div>
-            <h1 style={{ fontSize: 50, color: "white" }}></h1>
           </div>
         </form>
         <div>{submitClicked && <Table />}</div>
