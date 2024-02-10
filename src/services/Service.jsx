@@ -3,7 +3,7 @@ const id = new URL(location.href).searchParams.get('id');
 export default async function getAccount() {
   const rs = [];
   const res = await fetch(
-    `https://app-cv-ads-qa.azurewebsites.net/api/v1/procedureValidation/${id}`
+    `https://app-cv-ads-dev.azurewebsites.net/api/v1/procedureValidation/${id}`
   );
   const data = await res.json();
   const response = Object.values(data);
