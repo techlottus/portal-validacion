@@ -1,6 +1,10 @@
-const id = new URL(location.href).searchParams.get('id');
+"use client";
 
 export default async function getAccount() {
+  var id;
+  if (typeof window !== "undefined") {
+    id = new URL(location.href).searchParams.get("id");
+  }
   const rs = [];
   const res = await fetch(
     `https://app-cv-ads-qa.azurewebsites.net/api/v1/procedureValidation/${id}`

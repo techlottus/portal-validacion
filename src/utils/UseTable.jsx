@@ -12,57 +12,38 @@ export default function useTables() {
     table;
   return (
     <div className="container">
-      {/* Apply the table props */}
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                // Aplicamos las propiedades para ordenar a cada columna
-                <th
-                  {...column.getHeaderProps(column.getSortByToggleProps())}
-                  className={
-                    column.isSorted
-                      ? column.isSortedDesc
-                        ? "desc"
-                        : "asc"
-                      : ""
-                  }
-                >
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render("Header")}
                 </th>
               ))}
             </tr>
           ))}
         </thead>
-        {/* Apply the table body props */}
         <tbody {...getTableBodyProps()}>
-          {
-            // Loop over the table rows
-            rows.map((row) => {
-              // Prepare the row for display
-              prepareRow(row);
-              return (
-                // Apply the row props
-                <tr {...row.getRowProps()}>
-                  {
-                    // Loop over the rows cells
-                    row.cells.map((cell) => {
-                      // Apply the cell props
-                      return (
-                        <td {...cell.getCellProps()}>
-                          {
-                            // Render the cell contents
-                            cell.render("Cell")
-                          }
-                        </td>
-                      );
-                    })
-                  }
-                </tr>
-              );
-            })
-          }
+          {rows.map((row) => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map((cell) => {
+                  return (
+                    <td
+                      style={{
+                        textAlign: "center",
+                      }}
+                      {...cell.getCellProps()}
+                    >
+                      {cell.render("Cell")}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
