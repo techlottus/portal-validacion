@@ -37,11 +37,3 @@ tr:nth-child(even) {
   background: #ffffff;
   color: #000000;
 }
-
-th.desc {
-  border-bottom: 5px solid rgb(136, 136, 255);
-}
-
-th.asc {
-  border-top: 5px solid orange;
-}

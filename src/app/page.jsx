@@ -8,8 +8,8 @@ import search from "/src/search.png";
 import technology from "/src/technology.png";
 import Table from "/src/utils/UseTable";
 import callAPI from "/src/services/Service";
-
 const result = callAPI();
+
 var id = Promise.resolve(result).then((value) => {
   id = value[0];
 });
@@ -17,12 +17,14 @@ var id = Promise.resolve(result).then((value) => {
 function Page() {
   const searchParams = useSearchParams();
   const searchId = searchParams.get("id");
-  console.log("hola " + searchId);
   const [folio, setFolio] = useState(searchId);
   const [submitClicked, setSubmitClicked] = useState(false);
   const { handleSubmit } = useForm();
   const onSubmit = () => {
-    setSubmitClicked(true);
+    if (id === folio) {
+      console.log("id === folio " + id + " === " + folio);
+      setSubmitClicked(true);
+    }
   };
 
   return (
@@ -58,7 +60,7 @@ function Page() {
                 className="appearance-none block bg-white-200 text-black-700 border border-blue-700 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white"
                 type="text"
                 value={folio}
-                readonly="readonly"
+                readOnly="readonly"
                 onChange={(e) => setFolio(e.target.value)}
               />
               <button

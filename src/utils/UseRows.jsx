@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import download from "/src/download.png";
 import Image from "next/image";
 import callAPI from "/src/services/Service";
-
 const result = callAPI();
+
 var idAcct = Promise.resolve(result).then((value) => {
   idAcct = value[0];
 });
@@ -39,7 +39,12 @@ export default function useRows() {
         tipo_documento: proName,
         vigencia: expDate,
         descarga: (
-          <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <a href="#" onClick={(e) => downloadAsPDF()}>
               <Image src={download} alt="download" height={30} width={30} />
             </a>
