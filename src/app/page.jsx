@@ -29,10 +29,10 @@ function Page() {
 
   return (
     <main>
-      <div>
-        <Image src={logo} alt="logo" height={70} width={200} />
-      </div>
-      <div>
+      <nav className="shadow-neutral-300 shadow-sm flex mobile:justify-center">
+        <div class="p-6 cursor-pointer  border-solid border-surface-200 mobile:border-0 border-r flex mobile:justify-center  mobile:mx-24"><div class="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTEG/logotipo_38c0857c20.svg')] bg-cover bg-center"> </div></div>
+      </nav>
+      <div className="py-4">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div
             style={{
@@ -44,6 +44,7 @@ function Page() {
               height: "60vh",
               alignItems: "center",
               justifyContent: "center",
+
             }}
           >
             <div
@@ -59,7 +60,6 @@ function Page() {
               <input
                 className="appearance-none block bg-white-200 text-black-700 border border-blue-700 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white"
                 type="text"
-                value={folio}
                 readOnly="readonly"
                 onChange={(e) => setFolio(e.target.value)}
               />
