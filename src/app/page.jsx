@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "next/navigation";
-import logo from "/src/logo.png";
 import search from "/src/search.png";
 import technology from "/src/technology.png";
 import Table from "/src/utils/UseTable";
@@ -22,26 +21,29 @@ function Page() {
   const { handleSubmit } = useForm();
   const onSubmit = () => {
     if (id === folio) {
-      console.log("id === folio " + id + " === " + folio);
       setSubmitClicked(true);
     }
   };
 
   return (
     <main>
-      <div>
-        <Image src={logo} alt="logo" height={70} width={200} />
-      </div>
-      <div>
+      <nav className="shadow-neutral-300 shadow-sm flex mobile:justify-center">
+        <div className="p-6 cursor-pointer  border-solid border-surface-200 mobile:border-0 border-r flex mobile:justify-center  mobile:mx-24">
+          <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTEG/logotipo_38c0857c20.svg')] bg-cover bg-center">
+            {" "}
+          </div>
+        </div>
+      </nav>
+      <div className="py-4">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div
             style={{
               backgroundImage: `url(${technology.src})`,
               backgroundPosition: "center",
-              backgroundSize: "cover",
+              backgroundSize: "100% 100%",
               backgroundRepeat: "no-repeat",
               width: "auto",
-              height: "60vh",
+              height: "75vh",
               alignItems: "center",
               justifyContent: "center",
             }}
