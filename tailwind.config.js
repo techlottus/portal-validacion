@@ -10,6 +10,7 @@ module.exports = {
       fontFamily: {
         "icons-solid": ["Material Icons"],
         "icons-outlined": ["material icons outlined"],
+        "texts": ["Nunito Sans"],
       },
       spacing: {
         '0': '0px',

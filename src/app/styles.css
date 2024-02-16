@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp");
+@import url("https://fonts.googleapis.com/icon?family=Nunito+Sans:wght@400&display=swap");
+
 .container {
   display: flex;
   flex-direction: column;
