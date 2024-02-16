@@ -34,7 +34,7 @@ function Page() {
           </div>
         </div>
       </nav>
-      <div className="py-4">
+      <div className="py-4 h-full">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="relative w-full h-full">
             <div className="opacity-50 w-full h-[230px] mobile:h-[320px]"
@@ -86,7 +86,17 @@ function Page() {
 
           </div>
         </form>
-        <div>{submitClicked && <Table />}</div>
+        <div >{submitClicked && <Table />}</div>
+        <div className="mt-4 border-t border-t-neutral-300 border-b-8 border-b-primary-500 h-auto">
+          <div className="p-6 cursor-pointer  border-solid border-surface-200 mobile:border-0 border-r flex mobile:flex-col mobile:space-y-2 justify-center align-middle space-x-2 items-center">
+            <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTEG/logotipo_38c0857c20.svg')] bg-cover bg-center">
+              {" "}
+            </div>
+            <div className="font-texts text-sm"><p>©2021 Derechos reservados Lottus.</p></div>
+            <div className="font-texts text-sm"><p>Aviso de privacidad y Términos y condiciones</p></div>
+
+          </div>
+        </div>
       </div>
     </main>
   );
