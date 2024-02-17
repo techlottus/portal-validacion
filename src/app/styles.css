@@ -1,13 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp");
 @import url("https://fonts.googleapis.com/icon?family=Nunito+Sans:wght@400&display=swap");
 
-.container {
-  display: flex;
-  flex-direction: column;
-  font-family: "Calibri";
-  justify-content: center;
-  padding: 2rem 5rem;
-}
 
 table {
   border-spacing: 0;
@@ -24,6 +17,7 @@ td {
   padding: 0.5rem;
   border-bottom: 1px solid #d1cccc;
   border-right: 1px solid #d1cccc;
+  font-size: 14px;
 }
 
 th:last-child,
@@ -37,6 +31,6 @@ tr:nth-child(odd) {
 }
 
 tr:nth-child(even) {
-  background: #ffffff;
+  background: #ffff;
   color: #000000;
 }
