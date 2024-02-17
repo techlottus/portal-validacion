@@ -1,14 +1,13 @@
 "use client";
 
 export default async function getAccount() {
+  const service = process.env.NEXT_PUBLIC_SERVICE;
   var id;
   if (typeof window !== "undefined") {
     id = new URL(location.href).searchParams.get("id");
   }
   const rs = [];
-  const res = await fetch(
-    `https://app-cv-ads-qa.azurewebsites.net/api/v1/procedureValidation/${id}`
-  );
+  const res = await fetch(`${service}${id}`);
   const data = await res.json();
   const response = Object.values(data);
   const idAcc = String(response.map((row) => row.id)).split(",")[0];

@@ -34,47 +34,78 @@ function Page() {
           </div>
         </div>
       </nav>
-      <div className="py-4">
+      <div className="py-4 h-full">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div
-            style={{
-              backgroundImage: `url(${technology.src})`,
-              backgroundPosition: "center",
-              backgroundSize: "100% 100%",
-              backgroundRepeat: "no-repeat",
-              width: "auto",
-              height: "75vh",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <div className="relative w-full h-full">
             <div
+              className="opacity-50 w-full h-[230px] mobile:h-[320px]"
               style={{
-                display: "flex",
+                backgroundImage: `url(${technology.src})`,
+                backgroundPosition: "center",
+                backgroundSize: "100% 100%",
+                backgroundRepeat: "no-repeat",
                 alignItems: "center",
                 justifyContent: "center",
-                height: "100%",
-                width: "100%",
               }}
-            >
-              <Image src={search} alt="search" height={35} width={35} />
-              <input
-                className="appearance-none block bg-white-200 text-black-700 border border-blue-700 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white"
-                type="text"
-                value={folio}
-                readOnly="readonly"
-                onChange={(e) => setFolio(e.target.value)}
-              />
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                type="submit"
-              >
-                Buscar
-              </button>
+            ></div>
+            <div className=" absolute w-full h-full top-0 ">
+              <div className="w-full h-full flex align-middle justify-center">
+                <div className="flex mobile:flex-col mobile:space-y-2 align-middle items-center justify-center">
+                  <div className="flex  w-[660px] mobile:w-full bg-neutral-100  px-6 py-4 mobile:py-2 mobile:px-2 space-x-4 mobile:space-x-0 rounded shadow h-fit">
+                    <div className="flex items-center mobile:hidden">
+                      <span className="font-icons-outlined w-6 h-6 text-xl">
+                        <Image
+                          src={search}
+                          alt="search"
+                          height={35}
+                          width={35}
+                        />
+                      </span>
+                    </div>
+                    <div className="border-r mobile:border-none grow border-neutral-300">
+                      <input
+                        className="appearance-none grow  bg-neutral-100 font-texts text-neutral-200 rounded py-2 px-4 leading-tight text-lg mobile:text-md focus:outline-none focus:bg-white"
+                        type="text"
+                        placeholder="Introduzca el folio"
+                        value={folio}
+                        readOnly="readonly"
+                        onChange={(e) => setFolio(e.target.value)}
+                      />
+                    </div>
+                    <button
+                      className="text-neutral-900 font-bold font-texts py-2 px-4 rounded mobile:hidden"
+                      type="submit"
+                    >
+                      Buscar
+                    </button>
+                  </div>
+                  <div className="hidden mobile:flex w-full">
+                    <button
+                      className="text-neutral-100 font-bold bg-neutral-900 font-texts py-2 px-4 rounded w-full"
+                      type="submit"
+                    >
+                      Buscar
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </form>
         <div>{submitClicked && <Table />}</div>
+        <div className="mt-4 border-t border-t-neutral-300 border-b-8 border-b-primary-500 h-auto">
+          <div className="p-6 cursor-pointer  border-solid border-surface-200 mobile:border-0 border-r flex mobile:flex-col mobile:space-y-2 justify-center align-middle space-x-2 items-center">
+            <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTEG/logotipo_38c0857c20.svg')] bg-cover bg-center">
+              {" "}
+            </div>
+            <div className="font-texts text-sm">
+              <p>©2021 Derechos reservados Lottus.</p>
+            </div>
+            <div className="font-texts text-sm">
+              <p>Aviso de privacidad y Términos y condiciones</p>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );
