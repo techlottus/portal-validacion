@@ -46,6 +46,7 @@ function Page() {
               height: "75vh",
               alignItems: "center",
               justifyContent: "center",
+
             }}
           >
             <div
@@ -61,7 +62,6 @@ function Page() {
               <input
                 className="appearance-none block bg-white-200 text-black-700 border border-blue-700 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white"
                 type="text"
-                value={folio}
                 readOnly="readonly"
                 onChange={(e) => setFolio(e.target.value)}
               />
