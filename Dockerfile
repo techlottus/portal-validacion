@@ -5,7 +5,7 @@ FROM node:18
 USER node
 
 # Create app directory (with user `node`)
-RUN mkdir -p /app
+RUN mkdir /app
 
 WORKDIR /app
 
