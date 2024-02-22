@@ -1,16 +1,16 @@
 "use client";
 
 export default async function getAccount() {
-  const service = process.env.NEXT_PUBLIC_SERVICE;
   var id;
   if (typeof window !== "undefined") {
     id = new URL(location.href).searchParams.get("id");
   }
-  console.log(service + id);
+  console.log("https://app-cv-ads-qa.azurewebsites.net/api/v1/procedureValidation/" + id);
   const rs = [];
-  const res = await fetch(`${service}${id}`);
+  const res = await fetch(`https://app-cv-ads-qa.azurewebsites.net/api/v1/procedureValidation/${id}`);
   const data = await res.json();
   const response = Object.values(data);
+  console.log("RETORNO DE VARIABLES");
   console.log(response);
   const idAcc = String(response.map((row) => row.id)).split(",")[0];
   const name = String(response.map((row) => row.studentName)).split(",")[0];
