@@ -6,10 +6,12 @@ export default async function getAccount() {
   if (typeof window !== "undefined") {
     id = new URL(location.href).searchParams.get("id");
   }
+  console.log(service + id);
   const rs = [];
   const res = await fetch(`${service}${id}`);
   const data = await res.json();
   const response = Object.values(data);
+  console.log(response);
   const idAcc = String(response.map((row) => row.id)).split(",")[0];
   const name = String(response.map((row) => row.studentName)).split(",")[0];
   const school = String(response.map((row) => row.school)).split(",")[0];
