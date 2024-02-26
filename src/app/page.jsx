@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "next/navigation";
 import search from "/src/search.png";
-import technology from "/src/technology.png";
+import technology from "/src/banners_validacion_documentos.jpg";
 import Table from "/src/utils/UseTable";
 import callAPI from "/src/services/Service";
 const result = callAPI();
