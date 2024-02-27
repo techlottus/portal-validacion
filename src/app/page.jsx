@@ -64,7 +64,7 @@ function Page() {
                     </div>
                     <div className="border-r mobile:border-none grow border-neutral-300">
                       <input
-                        className="appearance-none grow  bg-neutral-100 font-texts text-neutral-800 rounded py-2 px-4 leading-tight text-lg mobile:text-md focus:outline-none focus:bg-white"
+                        className="appearance-none grow  bg-neutral-100 font-texts text-neutral-200 rounded py-2 px-4 leading-tight text-lg mobile:text-md focus:outline-none focus:bg-white"
                         type="text"
                         placeholder="Introduzca el folio"
                         value={folio}
