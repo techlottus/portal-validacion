@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "next/navigation";
 import search from "/src/search.png";
-import technology from "/src/technology.png";
+import backgrImage from "/src/technology.png";
 import Table from "/src/utils/UseTable";
 import callAPI from "/src/services/Service";
 const result = callAPI();
@@ -40,7 +40,7 @@ function Page() {
             <div
               className="opacity-50 w-full h-[230px] mobile:h-[320px]"
               style={{
-                backgroundImage: `url(${technology.src})`,
+                backgroundImage: `url(${backgrImage.src})`,
                 backgroundPosition: "center",
                 backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
@@ -64,7 +64,7 @@ function Page() {
                     </div>
                     <div className="border-r mobile:border-none grow border-neutral-300">
                       <input
-                        className="appearance-none grow  bg-neutral-100 font-texts text-neutral-200 rounded py-2 px-4 leading-tight text-lg mobile:text-md focus:outline-none focus:bg-white"
+                        className="appearance-none grow  bg-neutral-100 font-texts text-neutral-900 rounded py-2 px-4 leading-tight text-lg mobile:text-md focus:outline-none focus:bg-white"
                         type="text"
                         placeholder="Introduzca el folio"
                         value={folio}
