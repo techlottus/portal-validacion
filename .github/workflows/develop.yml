@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy container app to Azure Web App - app-cv-portalvalidacion
+name: Develop AzureWebApp - app-cv-portalvalidacion
 
 on:
   push:
@@ -14,6 +14,34 @@ jobs:
     runs-on: 'ubuntu-latest'
 
     steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        # This action needs access to the history and tags.
+        # With 'fetch-depth: 0' the action fetches the complete history and all tags.
+        # You can also limit the depth to a certain number and run
+        # with 'fetch-tags: true'. The produced version number might not
+        # be accurate in that case.
+        fetch-depth: 0
+    
+    - name: Run Git Version
+      id: gitversion
+      uses: toitlang/action-git-version@v1.1.0
+
+    - name: Use the version
+      shell: bash
+      run: |
+        echo ${{ steps.gitversion.outputs.version }}
+
+    - name: Get short Gitversion
+      id: get-short-gitver
+      run: |
+        short=$(echo ${{steps.gitversion.outputs.version}} | cut -c 1-13)
+        short+=$(echo ${{steps.gitversion.outputs.version}} | cut -c 16-)
+        echo "::set-output name=short::$short"
+        echo ${{ steps.get-short-gitver.outputs.short }}
+        echo $GITVERSION
+        
     - uses: actions/checkout@v2
 
     - name: Set up Docker Buildx
@@ -30,14 +58,14 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: lottus.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_dd37fb0a4ca24f91944dc03dcbaf677c }}/cv-portalvalidacion:${{ github.sha }}
+        tags: lottus.azurecr.io/cv-portalvalidacion:${{ steps.get-short-gitver.outputs.short }}
         file: ./Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'production'
+      name: 'develop'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -48,4 +76,4 @@ jobs:
         app-name: 'app-cv-portalvalidacion'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_710f6ef4ea5e49bbaeae2d90cf4ce1ce }}
-        images: 'lottus.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_dd37fb0a4ca24f91944dc03dcbaf677c }}/cv-portalvalidacion:${{ github.sha }}'
+        images: 'lottus.azurecr.io/cv-portalvalidacion:${{ steps.get-short-gitver.outputs.short }}'
