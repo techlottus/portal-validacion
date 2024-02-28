@@ -59,7 +59,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: lottus.azurecr.io/cv-portalvalidacion:${{ steps.get-short-gitver.outputs.short }}
+        tags: lottus.azurecr.io/cv-portalvalidacion:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -77,4 +77,4 @@ jobs:
         app-name: 'app-cv-portalvalidacion'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_710f6ef4ea5e49bbaeae2d90cf4ce1ce }}
-        images: 'lottus.azurecr.io/cv-portalvalidacion:${{ steps.get-short-gitver.outputs.short }}'
+        images: 'lottus.azurecr.io/cv-portalvalidacion:${{ github.sha }}'
