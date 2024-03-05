@@ -12,14 +12,24 @@ export default function useTables() {
     table;
   return (
     <div className="flex flex-col font-texts justify-center desktop:px-28 tablet:px-10 py-4 w-full">
-      <div className="font-texts font-bold text-surface-50 text-sm p-4 bg-[#36558D]"><h3>Información del documento</h3></div>
+      <div className="font-texts font-bold text-surface-50 text-sm p-4 bg-[#36558D]">
+        <h3
+          style={{
+            textAlign: "center",
+          }}
+        >
+          Información del documento
+        </h3>
+      </div>
       <table {...getTableProps()} className="border border-surface-300">
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render("Header")}
+                  <div className="flex flex-col font-texts justify-center desktop:px-12 tablet:px-10 py-1 w-full">
+                    {column.render("Header")}
+                  </div>
                 </th>
               ))}
             </tr>
@@ -38,7 +48,9 @@ export default function useTables() {
                       }}
                       {...cell.getCellProps()}
                     >
-                      {cell.render("Cell")}
+                      <div className="flex flex-col font-texts justify-center desktop:px-12 tablet:px-10 py-1 w-full">
+                        {cell.render("Cell")}
+                      </div>
                     </td>
                   );
                 })}
