@@ -42,7 +42,7 @@ function Page() {
               style={{
                 backgroundImage: `url(${backgrImage.src})`,
                 backgroundPosition: "center",
-                backgroundSize: "100% 100%",
+                backgroundSize: "80% 100%",
                 backgroundRepeat: "no-repeat",
                 alignItems: "center",
                 justifyContent: "center",
