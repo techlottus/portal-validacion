@@ -38,14 +38,12 @@ function Page() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="relative w-full h-full">
             <div
-              className="opacity-50 w-full h-[230px] mobile:h-[320px]"
+              className=" w-full h-[230px] mobile:h-[320px] bg-cover"
               style={{
-                backgroundImage: `url(${backgrImage.src})`,
+                backgroundImage: `url("https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTEG/banners_validacion_documentos_7ceb4bf575.jpg")`,
                 backgroundPosition: "center",
-                backgroundSize: "80% 100%",
+                backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
-                alignItems: "center",
-                justifyContent: "center",
               }}
             ></div>
             <div className=" absolute w-full h-full top-0 ">
@@ -53,14 +51,9 @@ function Page() {
                 <div className="flex mobile:flex-col mobile:space-y-2 align-middle items-center justify-center">
                   <div className="flex  w-[660px] mobile:w-full bg-neutral-100  px-6 py-4 mobile:py-2 mobile:px-2 space-x-4 mobile:space-x-0 rounded shadow h-fit">
                     <div className="flex items-center mobile:hidden">
-                      <span className="font-icons-outlined w-6 h-6 text-xl">
-                        <Image
-                          src={search}
-                          alt="search"
-                          height={35}
-                          width={35}
-                        />
-                      </span>
+                    <span class="material-icons w-6 h-6 text-xl text-surface-400">
+                      search
+                    </span>
                     </div>
                     <div className="border-r mobile:border-none grow border-neutral-300">
                       <input
@@ -73,7 +66,7 @@ function Page() {
                       />
                     </div>
                     <button
-                      className="text-neutral-900 font-bold font-texts py-2 px-4 rounded mobile:hidden"
+                      className="text-surface-900 font-bold font-texts py-2 px-4 rounded mobile:hidden"
                       type="submit"
                     >
                       Buscar
