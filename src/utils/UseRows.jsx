@@ -55,10 +55,12 @@ export default function useRows() {
               style={{
                 display: "flex",
                 justifyContent: "center",
-              }}
+              }} className="mobile:py-2 mobile:px-4 mobile:rounded mobile:bg-surface-800 mobile:text-surface-100 mobile:flex mobile:align-middle"
             >
-              <a href="#" onClick={(e) => downloadAsPDF()}>
-                <Image src={download} alt="download" height={30} width={30} />
+              <a href="#" onClick={(e) => downloadAsPDF()} className="mobile:flex mobile:items-center" >
+                <span className="material-icons w-8 mobile:flex mobile:align-middle mobile:justify-center">download</span>
+                <span className="text-surface-100 font-bold hidden mobile:flex align-middle ">Descargar</span>
+                {/* <Image src={download} alt="download" height={30} width={30} /> */}
               </a>
             </div>
           ),
