@@ -82,7 +82,7 @@ function Page() {
             </div>
           </div>
         </form>
-        <div>{submitClicked && <Table />}</div>
+        <div className="desktop:px-55 tablet:px-6 px-2 py-12">{submitClicked && <Table />}</div>
         <div className="mt-4 border-t border-t-neutral-300 border-b-8 border-b-primary-500 h-auto">
           <div className="p-6 cursor-pointer  border-solid border-surface-200 mobile:border-0 border-r flex mobile:flex-col mobile:space-y-2 justify-center align-middle space-x-2 items-center">
             <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTEG/logotipo_38c0857c20.svg')] bg-cover bg-center">
