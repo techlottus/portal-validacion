@@ -27,7 +27,12 @@ export default function useTables() {
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  <div className="flex flex-col font-texts justify-center desktop:px-12 tablet:px-10 py-1 w-full">
+                  <div
+                    style={{
+                      justifyContent: "center",
+                    }}
+                    className="flex flex-col flex-nowrap text-xs sm:table-row mb-2 sm:mb-0"
+                  >
                     {column.render("Header")}
                   </div>
                 </th>
@@ -42,13 +47,15 @@ export default function useTables() {
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <td
-                      style={{
-                        textAlign: "center",
-                      }}
-                      {...cell.getCellProps()}
-                    >
-                      <div className="flex flex-col font-texts justify-center desktop:px-12 tablet:px-10 py-1 w-full">
+                    <td {...cell.getCellProps()}>
+                      <div
+                        style={{
+                          display: "flex",
+                          textAlign: "center",
+                          justifyContent: "center",
+                        }}
+                        className="flex flex-col flex-nowrap text-xs sm:table-row mb-2 sm:mb-0"
+                      >
                         {cell.render("Cell")}
                       </div>
                     </td>
