@@ -2,6 +2,8 @@ import { useMemo } from "react";
 import download from "/src/download.png";
 import Image from "next/image";
 import callAPI from "/src/services/Service";
+import cn from "classnames"
+import moment, { now } from "moment/moment";
 const result = callAPI();
 
 var idAcct = Promise.resolve(result).then((value) => {
@@ -49,7 +51,7 @@ export default function useRows() {
           nombre: name,
           folio: idAcct,
           tipo_documento: proName,
-          vigencia: expDate,
+          vigencia: (<span className={cn({["text-error-500"]:moment().isAfter(moment(expDate))})}>{expDate} <span className={cn({["hidden"]:moment().isBefore(moment(expDate))})}>VENCIDO</span></span>),
           descarga: (
             <div
               style={{
