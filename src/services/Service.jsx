@@ -5,13 +5,11 @@ export default async function getAccount() {
   if (typeof window !== "undefined") {
     id = new URL(location.href).searchParams.get("id");
   }
-  console.log("https://app-cv-ads-qa.azurewebsites.net/api/v1/procedureValidation/" + id);
   const rs = [];
   const res = await fetch(`https://app-cv-ads-qa.azurewebsites.net/api/v1/procedureValidation/${id}`);
   const data = await res.json();
   const response = Object.values(data);
-  console.log("RETORNO DE VARIABLES");
-  console.log(response);
+  console.log("RETORNO DE VARIABLES Y CARGA DE TABLA");
   const idAcc = String(response.map((row) => row.id)).split(",")[0];
   const name = String(response.map((row) => row.studentName)).split(",")[0];
   const school = String(response.map((row) => row.school)).split(",")[0];

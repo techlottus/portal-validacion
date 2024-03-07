@@ -1,10 +1,7 @@
 "use client";
-import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "next/navigation";
-import search from "/src/search.png";
-import backgrImage from "/src/technology.png";
 import Table from "/src/utils/UseTable";
 import callAPI from "/src/services/Service";
 const result = callAPI();
