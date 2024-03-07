@@ -26,8 +26,8 @@ export default function useTables() {
           Información del documento
         </h3>
       </div>
-      <table {...getTableProps()} className="border border-surface-300 hidden tablet:block desktop:block">
-        <thead>
+      <table {...getTableProps()} className="border border-surface-300 mobile:hidden w-full">
+        <thead className="w-full">
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
