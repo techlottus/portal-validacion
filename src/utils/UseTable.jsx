@@ -29,9 +29,11 @@ export default function useTables() {
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   <div
                     style={{
+                      display: "flex",
+                      textAlign: "center",
                       justifyContent: "center",
                     }}
-                    className="flex flex-col flex-nowrap text-xs sm:table-row mb-2 sm:mb-0"
+                    className="font-bold flex flex-col flex-nowrap text-sm sm:table-row mb-2 sm:mb-0"
                   >
                     {column.render("Header")}
                   </div>

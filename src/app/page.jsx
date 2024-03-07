@@ -48,7 +48,7 @@ function Page() {
                 <div className="flex mobile:flex-col mobile:space-y-2 align-middle items-center justify-center">
                   <div className="flex  w-[660px] mobile:w-full bg-neutral-100  px-6 py-4 mobile:py-2 mobile:px-2 space-x-4 mobile:space-x-0 rounded shadow h-fit">
                     <div className="flex items-center mobile:hidden">
-                    <span class="material-icons w-6 h-6 text-xl text-surface-400">
+                    <span className="material-icons w-6 h-6 text-xl text-surface-400">
                       search
                     </span>
                     </div>
