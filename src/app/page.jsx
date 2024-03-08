@@ -82,7 +82,15 @@ function Page() {
             </div>
           </div>
         </form>
-        <div className="desktop:px-55 tablet:px-6 px-2 py-12">{submitClicked && <Table />}</div>
+        <div className="desktop:px-55 tablet:px-6 px-2 py-12">
+          {submitClicked ? <Table /> 
+          : 
+          <div className="w-full py-6 flex justify-center align-middle ">
+            <div className="flex-col" >
+             <img className="w-45 h-45" 
+             src="https://s3-alpha-sig.figma.com/img/d2ea/0ad1/c9fd6099d765a35cfc4d97d27c2e6758?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bTqzL2YSJB91XtKx~liGHqcKv93xBRY7cWeskZhFNQd5k2t1HMtx0fqFpmgD1QJzb1ABGBcd8ICu3Las0kgQtgb5CamED6Dt1RKyRkGytHv7MiwHpKJ3hLPpViphTSaErVodtDHICwxskpXmshhmWkCOpT4WxrpZ835uaXH5Ho9vCfUGa3FRqJiayB1ts0820oiNE2SZDPe1YXnCdIJH~lR25SZ3113KMkCy-ZfOP2L~WZSIyWWFSPrPwbM18bqqR0tgE72Yu5PhoDNDWB3IxaYp6Zanu6MYC85L9q~4LQsOJ~J8aI62u7QMb0oB3UkzKjNNTJQR2dbbvJibMDbv4A__"/>
+             <div className="font-headings py-4 text-lg font-bold text-surface-900 flex justify-center">El folio no existe</div>
+             </div></div>}</div>
         <div className="mt-4 border-t border-t-neutral-300 border-b-8 border-b-primary-500 h-auto">
           <div className="p-6 cursor-pointer  border-solid border-surface-200 mobile:border-0 border-r flex mobile:flex-col mobile:space-y-2 justify-center align-middle space-x-2 items-center">
             <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTEG/logotipo_38c0857c20.svg')] bg-cover bg-center">

@@ -12,6 +12,7 @@ module.exports = {
         "icons-solid": ["Material Icons"],
         "icons-outlined": ["material icons outlined"],
         "texts": ["Nunito"],
+        "headings":["Poppins"]
       },
       spacing: {
         '0': '0px',

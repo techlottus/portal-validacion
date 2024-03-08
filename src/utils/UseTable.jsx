@@ -17,7 +17,8 @@ export default function useTables() {
   const handleClickMore = ()=>{
     setOpen(open? false : true)
   }
-  return (
+  console.log(rows)
+  return rows ?(
     <div className="flex flex-col font-texts justify-center  py-4 w-full">
       <div className="font-texts font-bold text-surface-50 text-sm p-4 bg-[#36558D]">
         <h3
@@ -26,6 +27,7 @@ export default function useTables() {
           Información del documento
         </h3>
       </div>
+     
       <table {...getTableProps()} className="border border-surface-300 mobile:hidden w-full">
         <thead className="w-full">
           {headerGroups.map((headerGroup) => (
@@ -85,6 +87,5 @@ export default function useTables() {
           })}
         </tbody>
       </table>
-    </div>
-  );
-}
+    </div>): <span>NO FOLIO</span>}
+
