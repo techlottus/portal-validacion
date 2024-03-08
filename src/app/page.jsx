@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "next/navigation";
 import Table from "/src/utils/UseTable";
+import cn from "classnames"
 import callAPI from "/src/services/Service";
 const result = callAPI();
 
@@ -14,12 +15,11 @@ function Page() {
   const searchParams = useSearchParams();
   const searchId = searchParams.get("id");
   const [folio, setFolio] = useState(searchId);
-  const [submitClicked, setSubmitClicked] = useState(false);
+  const [submitClicked, setSubmitClicked] = useState(null);
   const { handleSubmit } = useForm();
   const onSubmit = () => {
-    if (id === folio) {
       setSubmitClicked(true);
-    }
+
   };
 
   return (
@@ -83,9 +83,9 @@ function Page() {
           </div>
         </form>
         <div className="desktop:px-55 tablet:px-6 px-2 py-12">
-          {submitClicked ? <Table /> 
-          : 
-          <div className="w-full py-6 flex justify-center align-middle ">
+          {id==folio && submitClicked ? <Table /> 
+          : submitClicked &&
+          <div className={cn("w-full py-6 flex justify-center align-middle ",{["hidden"]:id ==folio})}>
             <div className="flex-col" >
              <img className="w-45 h-45" 
              src="https://s3-alpha-sig.figma.com/img/d2ea/0ad1/c9fd6099d765a35cfc4d97d27c2e6758?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bTqzL2YSJB91XtKx~liGHqcKv93xBRY7cWeskZhFNQd5k2t1HMtx0fqFpmgD1QJzb1ABGBcd8ICu3Las0kgQtgb5CamED6Dt1RKyRkGytHv7MiwHpKJ3hLPpViphTSaErVodtDHICwxskpXmshhmWkCOpT4WxrpZ835uaXH5Ho9vCfUGa3FRqJiayB1ts0820oiNE2SZDPe1YXnCdIJH~lR25SZ3113KMkCy-ZfOP2L~WZSIyWWFSPrPwbM18bqqR0tgE72Yu5PhoDNDWB3IxaYp6Zanu6MYC85L9q~4LQsOJ~J8aI62u7QMb0oB3UkzKjNNTJQR2dbbvJibMDbv4A__"/>
