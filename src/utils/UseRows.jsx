@@ -51,7 +51,7 @@ export default function useRows() {
           nombre: name,
           folio: idAcct,
           tipo_documento: proName,
-          vigencia: (<span className={cn({["text-error-500"]:moment().isAfter(moment(expDate))})}>{expDate} <span className={cn({["hidden"]:moment().isBefore(moment(expDate))})}>VENCIDO</span></span>),
+          vigencia: (<span className={cn({["text-error-500"]:moment().isAfter(moment(expDate))})}>{expDate} <span className={cn({["hidden"]:!moment().isAfter(moment(expDate))})}>VENCIDO</span></span>),
           descarga: (
             <div
               style={{
