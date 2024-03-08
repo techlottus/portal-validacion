@@ -7,7 +7,7 @@ var file = Promise.resolve(result).then((value) => {
 });
 
 export default function useColumns() {
-  if (file.length === 0 || file.length === null) {
+  if (file.length === 0 || file === null) {
     const columns = useMemo(
       () => [
         {
