@@ -2,10 +2,15 @@
 
 export default async function getAccount() {
   var searchId;
+  var id;
   if (typeof window !== "undefined") {
     searchId = new URL(location.href).searchParams.get("id");
   }
-  var id = searchId.substring(0, searchId.length - 3);
+  if (searchId.includes("UTEG")) {
+    id = searchId.slice(0,- 4);
+  } else {
+    id = searchId.slice(0,- 3);
+  }
   const rs = [];
   const res = await fetch(`https://app-cv-ads-qa.azurewebsites.net/api/v1/procedureValidation/${id}`);
   const data = await res.json();

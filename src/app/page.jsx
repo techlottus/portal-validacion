@@ -14,11 +14,17 @@ var id = Promise.resolve(result).then((value) => {
 function Page() {
   const searchParams = useSearchParams();
   const searchId = searchParams.get("id");
-  const val = searchId.substring(0, searchId.length - 3);
-  console.log(val);
-  const n = 3;
-  var school = searchId.slice(-n);
-  const [folio, setFolio] = useState(val);
+  var idAcc;
+  var school;
+  if (searchId.includes("UTEG")) {
+    idAcc = searchId.slice(0,- 4);
+    school = searchId.slice(-4);
+  } else {
+    idAcc = searchId.slice(0,- 3);
+    school = searchId.slice(-3);
+  }
+  console.log(idAcc);
+  const [folio, setFolio] = useState(idAcc);
   const [submitClicked, setSubmitClicked] = useState(null);
   const { handleSubmit } = useForm();
   const onSubmit = () => {
@@ -34,8 +40,8 @@ function Page() {
               {" "}
             </div>
           ) : (
-            school == "UTG" && (
-              <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTEG/logotipo_38c0857c20.svg')] bg-cover bg-center">
+            school == "UTC" && (
+              <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTC/utc_152x39_d8f67c2a53.svg')] bg-cover bg-center">
                 {" "}
               </div>
             )
@@ -123,8 +129,8 @@ function Page() {
                 {" "}
               </div>
             ) : (
-              school == "UTG" && (
-                <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTEG/logotipo_38c0857c20.svg')] bg-cover bg-center">
+              school == "UTC" && (
+                <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTC/utc_152x39_d8f67c2a53.svg')] bg-cover bg-center">
                   {" "}
                 </div>
               )
