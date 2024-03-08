@@ -16,7 +16,6 @@ export default function useTables() {
   const handleClickMore = () => {
     setOpen(open ? false : true);
   };
-  console.log(rows);
   return rows ? (
     <div className="flex flex-col font-texts justify-center  py-4 w-full">
       <div className="font-texts font-bold text-surface-50 text-sm p-4 bg-[#36558D]">
