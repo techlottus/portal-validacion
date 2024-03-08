@@ -1,6 +1,4 @@
 import { useMemo } from "react";
-import download from "/src/download.png";
-import Image from "next/image";
 import callAPI from "/src/services/Service";
 import cn from "classnames"
 import moment, { now } from "moment/moment";
@@ -31,14 +29,14 @@ function downloadAsPDF() {
 }
 
 export default function useRows() {
-  if (file.length === 0 || file.length === null) {
+  if (file.length === 0 || file === null) {
     const rows = useMemo(
       () => [
         {
           nombre: name,
           folio: idAcct,
           tipo_documento: proName,
-          vigencia: expDate,
+          vigencia: (<span className={cn({["text-error-500"]:moment().isAfter(moment(expDate))})}>{expDate} <span className={cn({["hidden"]:!moment().isAfter(moment(expDate))})}>VENCIDO</span></span>),
         },
       ],
       []
@@ -62,7 +60,6 @@ export default function useRows() {
               <a href="#" onClick={(e) => downloadAsPDF()} className="mobile:flex mobile:items-center" >
                 <span className="material-icons w-8 mobile:flex mobile:align-middle mobile:justify-center">download</span>
                 <span className="text-surface-100 font-bold hidden mobile:flex align-middle ">Descargar</span>
-                {/* <Image src={download} alt="download" height={30} width={30} /> */}
               </a>
             </div>
           ),
