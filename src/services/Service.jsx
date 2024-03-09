@@ -1,7 +1,7 @@
 "use client";
 
 export default async function getAccount() {
-  var searchId;
+  let searchId;
   var id;
   if (typeof window !== "undefined") {
     searchId = new URL(location.href).searchParams.get("id");

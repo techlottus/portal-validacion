@@ -13,14 +13,14 @@ var id = Promise.resolve(result).then((value) => {
 
 function Page() {
   const searchParams = useSearchParams();
-  const searchId = searchParams.get("id");
+  var searchId = searchParams.get("id");
   var idAcc;
   var school;
   if (searchId.includes("UTEG")) {
-    idAcc = searchId.slice(0,- 4);
+    idAcc = searchId.slice(0, -4);
     school = searchId.slice(-4);
   } else {
-    idAcc = searchId.slice(0,- 3);
+    idAcc = searchId.slice(0, -3);
     school = searchId.slice(-3);
   }
   console.log(idAcc);
@@ -35,17 +35,19 @@ function Page() {
     <main>
       <nav className="shadow-neutral-300 shadow-sm flex mobile:justify-center">
         <div className="p-6 cursor-pointer  border-solid border-surface-200 mobile:border-0 border-r flex mobile:justify-center  mobile:mx-24">
-          {school == "ULA" ? (
-            <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/ULA/ULA_7ebac4d515.png')] bg-cover bg-center">
-              {" "}
-            </div>
-          ) : (
-            school == "UTC" && (
+        {school == "ULA" ? (
+              <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/ULA/ULA_7ebac4d515.png')] bg-cover bg-center">
+                {" "}
+              </div>
+            ) : school == "UTC" ? (
               <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTC/utc_152x39_d8f67c2a53.svg')] bg-cover bg-center">
                 {" "}
               </div>
-            )
-          )}
+            ) : (
+              <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTEG/logotipo_38c0857c20.svg')] bg-cover bg-center">
+                {" "}
+              </div>
+            )}
         </div>
       </nav>
       <div className="py-4 h-full">
@@ -128,12 +130,14 @@ function Page() {
               <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/ULA/ULA_7ebac4d515.png')] bg-cover bg-center">
                 {" "}
               </div>
+            ) : school == "UTC" ? (
+              <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTC/utc_152x39_d8f67c2a53.svg')] bg-cover bg-center">
+                {" "}
+              </div>
             ) : (
-              school == "UTC" && (
-                <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTC/utc_152x39_d8f67c2a53.svg')] bg-cover bg-center">
-                  {" "}
-                </div>
-              )
+              <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTEG/logotipo_38c0857c20.svg')] bg-cover bg-center">
+                {" "}
+              </div>
             )}
             <div className="font-texts text-sm">
               <p>©2021 Derechos reservados Lottus.</p>

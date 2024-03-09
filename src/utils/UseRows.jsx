@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import callAPI from "/src/services/Service";
-import cn from "classnames"
+import cn from "classnames";
 import moment, { now } from "moment/moment";
 const result = callAPI();
 
@@ -21,11 +21,13 @@ var expDate = Promise.resolve(result).then((value) => {
 });
 
 function downloadAsPDF() {
-  const downloadLink = document.createElement("a");
-  const fileName = proName + ".pdf";
-  downloadLink.href = "data:application/pdf;base64," + file;
-  downloadLink.download = fileName;
-  downloadLink.click();
+  console.log("entro");
+  var element = document.createElement("a");
+  var fileName = proName + ".pdf";
+  element.setAttribute("href", "data:application/pdf;base64," + file);
+  element.setAttribute("download", fileName);
+  document.body.appendChild(element);
+  element.click();
 }
 
 export default function useRows() {
@@ -36,7 +38,22 @@ export default function useRows() {
           nombre: name,
           folio: idAcct,
           tipo_documento: proName,
-          vigencia: (<span className={cn({["text-error-500"]:moment().isAfter(moment(expDate))})}>{expDate} <span className={cn({["hidden"]:!moment().isAfter(moment(expDate))})}>VENCIDO</span></span>),
+          vigencia: (
+            <span
+              className={cn({
+                ["text-error-500"]: moment().isAfter(moment(expDate)),
+              })}
+            >
+              {expDate}{" "}
+              <span
+                className={cn({
+                  ["hidden"]: !moment().isAfter(moment(expDate)),
+                })}
+              >
+                VENCIDO
+              </span>
+            </span>
+          ),
         },
       ],
       []
@@ -49,17 +66,41 @@ export default function useRows() {
           nombre: name,
           folio: idAcct,
           tipo_documento: proName,
-          vigencia: (<span className={cn({["text-error-500"]:moment().isAfter(moment(expDate))})}>{expDate} <span className={cn({["hidden"]:!moment().isAfter(moment(expDate))})}>VENCIDO</span></span>),
+          vigencia: (
+            <span
+              className={cn({
+                ["text-error-500"]: moment().isAfter(moment(expDate)),
+              })}
+            >
+              {expDate}{" "}
+              <span
+                className={cn({
+                  ["hidden"]: !moment().isAfter(moment(expDate)),
+                })}
+              >
+                VENCIDO
+              </span>
+            </span>
+          ),
           descarga: (
             <div
               style={{
                 display: "flex",
                 justifyContent: "center",
-              }} className="mobile:py-2 mobile:px-4 mobile:rounded mobile:bg-surface-800 mobile:text-surface-100 mobile:flex mobile:align-middle"
+              }}
+              className="mobile:py-2 mobile:px-4 mobile:rounded mobile:bg-surface-800 mobile:text-surface-100 mobile:flex mobile:align-middle"
             >
-              <a href="#" onClick={(e) => downloadAsPDF()} className="mobile:flex mobile:items-center" >
-                <span className="material-icons w-8 mobile:flex mobile:align-middle mobile:justify-center">download</span>
-                <span className="text-surface-100 font-bold hidden mobile:flex align-middle ">Descargar</span>
+              <a
+                href="#"
+                onClick={(e) => downloadAsPDF()}
+                className="mobile:flex mobile:items-center"
+              >
+                <span className="material-icons w-8 mobile:flex mobile:align-middle mobile:justify-center">
+                  download
+                </span>
+                <span className="text-surface-100 font-bold hidden mobile:flex align-middle ">
+                  Descargar
+                </span>
               </a>
             </div>
           ),
