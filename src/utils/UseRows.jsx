@@ -21,11 +21,29 @@ var expDate = Promise.resolve(result).then((value) => {
 });
 
 function downloadAsPDF() {
-  console.log("entro");
+  console.log("entro>>>");
+  const b64toBlob = (b64Data, contentType = "", sliceSize = 512) => {
+    const byteCharacters = atob(b64Data);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+      const byteNumbers = new Array(slice.length);
+      
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+    const blob = new Blob(byteArrays, { type: contentType });
+    return blob;
+  };
+  const contentType = "data:application/pdf";
+  const blob = b64toBlob(file, contentType);
+  const blobUrl = URL.createObjectURL(blob);
   const a = document.createElement("a");
-  document.body.appendChild(a);
-  a.style = "display: none";
-  a.href = "data:application/pdf;base64," + file;
+  a.href = blobUrl;
   a.download = proName + ".pdf";
   a.click();
 }
