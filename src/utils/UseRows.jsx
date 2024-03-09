@@ -22,12 +22,12 @@ var expDate = Promise.resolve(result).then((value) => {
 
 function downloadAsPDF() {
   console.log("entro");
-  var element = document.createElement("a");
-  var fileName = proName + ".pdf";
-  element.setAttribute("href", "data:application/pdf;base64," + file);
-  element.setAttribute("download", fileName);
-  document.body.appendChild(element);
-  element.click();
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+  a.style = "display: none";
+  a.href = "data:application/pdf;base64," + file;
+  a.download = proName + ".pdf";
+  a.click();
 }
 
 export default function useRows() {
