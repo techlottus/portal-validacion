@@ -21,7 +21,7 @@ var expDate = Promise.resolve(result).then((value) => {
 });
 
 function downloadAsPDF() {
-  console.log("entro<<<<<");
+  console.log("entro++++");
   const b64toBlob = (b64Data, contentType = "", sliceSize = 512) => {
     const byteCharacters = atob(b64Data);
     const byteArrays = [];
@@ -39,16 +39,21 @@ function downloadAsPDF() {
     const blob = new Blob(byteArrays, { type: contentType });
     return blob;
   };
-  const contentType = "data:application/pdf";
+  
+  const contentType = "application/pdf";
   const blob = b64toBlob(file, contentType);
   const blobUrl = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = blobUrl;
-  a.target = "_top";
+  a.target = "_parent";
   a.download = proName + ".pdf";
   (document.body || document.documentElement).append(a);
-  a.click();
-  a.remove();
+  
+  setTimeout(() => {
+    a.click();
+    a.remove();
+  }, 100);
+
 }
 
 export default function useRows() {
