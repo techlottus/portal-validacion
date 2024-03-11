@@ -140,7 +140,7 @@ function Page() {
               </div>
             )}
             <div className="font-texts text-sm">
-              <p>©2021 Derechos reservados Lottus.</p>
+              <p>©2024 Derechos reservados Lottus.</p>
             </div>
             <div className="font-texts text-sm">
               <p>Aviso de privacidad y Términos y condiciones</p>
