@@ -4,7 +4,7 @@ export default async function getAccount() {
   let searchId;
   var id;
   if (typeof window !== "undefined") {
-    searchId = new URL(location.href).searchParams.get("id");
+    searchId = new URL(location.href).searchParams.get("id") || "UTEG";
   }
   if (searchId.includes("UTEG")) {
     id = searchId.slice(0,- 4);

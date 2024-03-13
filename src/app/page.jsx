@@ -13,7 +13,7 @@ var id = Promise.resolve(result).then((value) => {
 
 function Page() {
   const searchParams = useSearchParams();
-  var searchId = searchParams.get("id");
+  var searchId = searchParams.get("id") || "UTEG"
   var idAcc;
   var school;
   if (searchId.includes("UTEG")) {
