@@ -1,28 +1,17 @@
-# Check out https://hub.docker.com/_/node to select a new base image
-FROM node:18
+FROM node:18.17.0
 
-# Set to a non-root built-in user `node`
-USER node
+RUN mkdir -p /app
 
-# Create app directory (with user `node`)
-RUN mkdir -p /home/node/app
+WORKDIR /app
 
-WORKDIR /home/node/app
+COPY package.json /app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY --chown=node package*.json ./
+RUN yarn install
 
-RUN npm install
+COPY . /app
 
-# Bundle app source code
-COPY --chown=node . .
+RUN yarn build
 
-RUN npm run build
+# EXPOSE 3000
 
-# Bind to all network interfaces so that it can be mapped to the host OS
-ENV HOST=0.0.0.0 PORT=3000
-
-EXPOSE ${PORT}
-CMD [ "node", "." ]
+CMD [ "yarn", "start" ]

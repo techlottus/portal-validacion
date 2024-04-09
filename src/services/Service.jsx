@@ -1,15 +1,22 @@
 "use client";
 
 export default async function getAccount() {
-  const service = process.env.NEXT_PUBLIC_SERVICE;
+  let searchId;
   var id;
   if (typeof window !== "undefined") {
-    id = new URL(location.href).searchParams.get("id");
+    searchId = new URL(location.href).searchParams.get("id");
+  }
+  if (searchId.includes("UTEG")) {
+    id = searchId.slice(0,- 4);
+  } else {
+    id = searchId.slice(0,- 3);
   }
   const rs = [];
-  const res = await fetch(`${service}${id}`);
+  const res = await fetch(`https://app-cv-ads-qa.azurewebsites.net/api/v1/procedureValidation/${id}`);
   const data = await res.json();
   const response = Object.values(data);
+  console.log("RETORNO DE VARIABLES Y CARGA DE TABLA");
+  console.log(id);
   const idAcc = String(response.map((row) => row.id)).split(",")[0];
   const name = String(response.map((row) => row.studentName)).split(",")[0];
   const school = String(response.map((row) => row.school)).split(",")[0];
