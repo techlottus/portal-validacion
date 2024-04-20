@@ -2,12 +2,12 @@ import { useMemo } from "react";
 import callAPI from "/src/services/Service";
 const result = callAPI();
 
-var file = Promise.resolve(result).then((value) => {
-  file = value[8];
+var row = Promise.resolve(result).then((value) => {
+  row = value[0];
 });
 
 export default function useColumns() {
-  if (file.length === 0 || file === null) {
+  if (row.file.length === 0 || row.file === null) {
     const columns = useMemo(
       () => [
         {
