@@ -4,24 +4,11 @@ import cn from "classnames";
 import moment, { now } from "moment/moment";
 const result = callAPI();
 
-var idAcct = Promise.resolve(result).then((value) => {
-  idAcct = value[0];
-});
-var name = Promise.resolve(result).then((value) => {
-  name = value[1];
-});
-var proName = Promise.resolve(result).then((value) => {
-  proName = value[6];
-});
-var file = Promise.resolve(result).then((value) => {
-  file = value[8];
-});
-var expDate = Promise.resolve(result).then((value) => {
-  expDate = value[10];
+var row = Promise.resolve(result).then((value) => {
+  row = value[0];
 });
 
 function downloadAsPDF() {
-  console.log("entro++++");
   const b64toBlob = (b64Data, contentType = "", sliceSize = 512) => {
     const byteCharacters = atob(b64Data);
     const byteArrays = [];
@@ -39,41 +26,48 @@ function downloadAsPDF() {
     const blob = new Blob(byteArrays, { type: contentType });
     return blob;
   };
-  
+
   const contentType = "application/pdf";
-  const blob = b64toBlob(file, contentType);
+  const blob = b64toBlob(row.file, contentType);
   const blobUrl = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = blobUrl;
   a.target = "_parent";
-  a.download = proName + ".pdf";
+  a.download = row.procedureName + ".pdf";
   (document.body || document.documentElement).append(a);
-  
+
   setTimeout(() => {
     a.click();
     a.remove();
   }, 100);
-
 }
 
 export default function useRows() {
-  if (file.length === 0 || file === null) {
+  if (row.file.length === 0 || row.file === null) {
     const rows = useMemo(
       () => [
         {
-          nombre: name,
-          folio: idAcct,
-          tipo_documento: proName,
+          nombre: row.studentName,
+          folio: row.id,
+          tipo_documento: row.procedureName,
           vigencia: (
             <span
               className={cn({
-                ["text-error-500"]: moment().isAfter(moment(expDate)),
+                ["text-error-500"]: moment().isAfter(
+                  moment(
+                    new Date(row.expirationDate).toLocaleDateString("es-MX")
+                  )
+                ),
               })}
             >
-              {expDate}{" "}
+              {new Date(row.expirationDate).toLocaleDateString("es-MX")}{" "}
               <span
                 className={cn({
-                  ["hidden"]: !moment().isAfter(moment(expDate)),
+                  ["hidden"]: !moment().isAfter(
+                    moment(
+                      new Date(row.expirationDate).toLocaleDateString("es-MX")
+                    )
+                  ),
                 })}
               >
                 VENCIDO
@@ -89,19 +83,27 @@ export default function useRows() {
     const rows = useMemo(
       () => [
         {
-          nombre: name,
-          folio: idAcct,
-          tipo_documento: proName,
+          nombre: row.studentName,
+          folio: row.id,
+          tipo_documento: row.procedureName,
           vigencia: (
             <span
               className={cn({
-                ["text-error-500"]: moment().isAfter(moment(expDate)),
+                ["text-error-500"]: moment().isAfter(
+                  moment(
+                    new Date(row.expirationDate).toLocaleDateString("es-MX")
+                  )
+                ),
               })}
             >
-              {expDate}{" "}
+              {new Date(row.expirationDate).toLocaleDateString("es-MX")}{" "}
               <span
                 className={cn({
-                  ["hidden"]: !moment().isAfter(moment(expDate)),
+                  ["hidden"]: !moment().isAfter(
+                    moment(
+                      new Date(row.expirationDate).toLocaleDateString("es-MX")
+                    )
+                  ),
                 })}
               >
                 VENCIDO
