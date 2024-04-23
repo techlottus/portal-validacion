@@ -12,7 +12,7 @@ export default async function getAccount() {
     id = searchId.slice(0, -3);
   }
   const res = await fetch(
-    `https://app-cv-ads-qa.azurewebsites.net/api/v1/procedureValidation/${id}`
+    `https://app-cv-ads-prod.azurewebsites.net/api/v1/procedureValidation/${id}`
   );
   const data = await res.json();
   const response = Object.values(data);
