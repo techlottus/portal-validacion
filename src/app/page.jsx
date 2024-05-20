@@ -13,7 +13,7 @@ var row = Promise.resolve(result).then((value) => {
 
 function Page() {
   const searchParams = useSearchParams();
-  var searchId = searchParams.get("id");
+  var searchId = searchParams.get("id") || "UTEG";
   var idAcc;
   var school;
   if (searchId.includes("UTEG")) {
@@ -33,7 +33,7 @@ function Page() {
 
   return (
     <main>
-      <nav className="shadow-neutral-300 shadow-sm flex mobile:justify-center">
+      <nav className="shadow-surface-300 shadow-sm flex mobile:justify-center">
         <div className="p-6 cursor-pointer  border-solid border-surface-200 mobile:border-0 border-r flex mobile:justify-center  mobile:mx-24">
           {school == "ULA" ? (
             <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/ULA/ULA_7ebac4d515.png')] bg-cover bg-center">
@@ -65,15 +65,15 @@ function Page() {
             <div className=" absolute w-full h-full top-0 ">
               <div className="w-full h-full flex align-middle justify-center">
                 <div className="flex mobile:flex-col mobile:space-y-2 align-middle items-center justify-center">
-                  <div className="flex  w-[660px] mobile:w-full bg-neutral-100  px-6 py-4 mobile:py-2 mobile:px-2 space-x-4 mobile:space-x-0 rounded shadow h-fit">
+                  <div className="flex  w-[660px] mobile:w-full bg-surface-100  px-6 py-4 mobile:py-2 mobile:px-2 space-x-4 mobile:space-x-0 rounded shadow h-fit">
                     <div className="flex items-center mobile:hidden">
                       <span className="material-icons w-6 h-6 text-xl text-surface-400">
                         search
                       </span>
                     </div>
-                    <div className="border-r mobile:border-none grow border-neutral-300">
+                    <div className="border-r mobile:border-none grow border-surface-300">
                       <input
-                        className="appearance-none grow  bg-neutral-100 font-texts text-neutral-900 rounded py-2 px-4 leading-tight text-lg mobile:text-md focus:outline-none focus:bg-white"
+                        className="appearance-none grow  bg-surface-100 font-texts text-surface-900 rounded py-2 px-4 leading-tight text-lg mobile:text-md focus:outline-none focus:bg-white"
                         type="text"
                         placeholder="Introduzca el folio"
                         value={folio}
@@ -90,7 +90,7 @@ function Page() {
                   </div>
                   <div className="hidden mobile:flex w-full">
                     <button
-                      className="text-neutral-100 font-bold bg-neutral-900 font-texts py-2 px-4 rounded w-full"
+                      className="text-surface-100 font-bold bg-surface-900 font-texts py-2 px-4 rounded w-full"
                       type="submit"
                     >
                       Buscar
@@ -124,21 +124,9 @@ function Page() {
             )
           )}
         </div>
-        <div className="mt-4 border-t border-t-neutral-300 border-b-8 border-b-primary-500 h-auto">
+        <div className="mt-4 border-t border-t-surface-300 border-b-8 border-b-primary-500 h-auto">
           <div className="p-6 cursor-pointer  border-solid border-surface-200 mobile:border-0 border-r flex mobile:flex-col mobile:space-y-2 justify-center align-middle space-x-2 items-center">
-            {school == "ULA" ? (
-              <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/ULA/ULA_7ebac4d515.png')] bg-cover bg-center">
-                {" "}
-              </div>
-            ) : school == "UTC" ? (
-              <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTC/utc_152x39_d8f67c2a53.svg')] bg-cover bg-center">
-                {" "}
-              </div>
-            ) : (
-              <div className="w-36 h-9  mobile:mx-24 bg-[url('https://bedu-staging-assets.s3.us-west-2.amazonaws.com/UTEG/logotipo_38c0857c20.svg')] bg-cover bg-center">
-                {" "}
-              </div>
-            )}
+            <div className="w-36 h-9  mobile:mx-24 bg-logo bg-cover bg-center"></div>
             <div className="font-texts text-sm">
               <p>©2024 Derechos reservados Lottus.</p>
             </div>
