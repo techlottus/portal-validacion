@@ -44,6 +44,9 @@ function downloadAsPDF() {
 
 export default function useRows() {
   if (row.file.length === 0 || row.file === null) {
+    
+    const isExpired = moment().isAfter(moment(new Date(row.expirationDate)));
+
     const rows = useMemo(
       () => [
         {
@@ -52,23 +55,11 @@ export default function useRows() {
           tipo_documento: row.procedureName,
           vigencia: (
             <span
-              className={cn({
-                ["text-error-500"]: moment().isAfter(
-                  moment(
-                    new Date(row.expirationDate).toLocaleDateString("es-MX")
-                  )
-                ),
-              })}
+              className={cn({ 'text-error-500': isExpired })}
             >
               {new Date(row.expirationDate).toLocaleDateString("es-MX")}{" "}
               <span
-                className={cn({
-                  ["hidden"]: !moment().isAfter(
-                    moment(
-                      new Date(row.expirationDate).toLocaleDateString("es-MX")
-                    )
-                  ),
-                })}
+                className={cn({'hidden': !isExpired})}
               >
                 VENCIDO
               </span>
