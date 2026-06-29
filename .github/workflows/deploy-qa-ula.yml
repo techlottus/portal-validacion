@@ -1,0 +1,75 @@
+name: app-portal-validacion-qa-ula - Build and Push to ECR
+
+on:
+  push:
+    branches:
+      - qa-ula
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    environment:
+      name: qa-ula
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ secrets.AWS_REGION_APP }}
+          role-to-assume: ${{ secrets.AWS_OIDC_ROLE }}
+          role-session-name: GitHub-OIDC-Session
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push Docker image
+        run: |
+          docker buildx build --platform linux/amd64 . \
+            -f Dockerfile -t ${{ vars.ECR_REPOSITORY }}:latest --load
+          docker push ${{ vars.ECR_REPOSITORY }}:latest
+
+      - name: Get current task definition
+        run: |
+          aws ecs describe-task-definition \
+            --task-definition ${{ vars.ECS_TASK_DEFINITION_FAMILY }} \
+            --region ${{ secrets.AWS_REGION_APP }} > task-definition.json
+
+      - name: Register new task definition
+        run: |
+          jq '.taskDefinition.containerDefinitions | map(if .name == "${{ vars.CONTAINER_NAME }}" then .image = "${{ vars.ECR_REPOSITORY }}:latest" else . end)' \
+            task-definition.json > new-container-def.json
+
+          aws ecs register-task-definition \
+            --family ${{ vars.ECS_TASK_DEFINITION_FAMILY }} \
+            --execution-role-arn $(jq -r '.taskDefinition.executionRoleArn' task-definition.json) \
+            --task-role-arn $(jq -r '.taskDefinition.taskRoleArn' task-definition.json) \
+            --network-mode $(jq -r '.taskDefinition.networkMode' task-definition.json) \
+            --container-definitions file://new-container-def.json \
+            --requires-compatibilities $(jq -r '.taskDefinition.requiresCompatibilities[0]' task-definition.json) \
+            --cpu $(jq -r '.taskDefinition.cpu' task-definition.json) \
+            --memory $(jq -r '.taskDefinition.memory' task-definition.json) \
+            --region ${{ secrets.AWS_REGION_APP }}
+
+      - name: Update ECS service
+        run: |
+          NEW_TASK_DEF_ARN=$(aws ecs describe-task-definition \
+            --task-definition ${{ vars.ECS_TASK_DEFINITION_FAMILY }} \
+            --region ${{ secrets.AWS_REGION_APP }} | jq -r '.taskDefinition.taskDefinitionArn')
+
+          aws ecs update-service \
+            --cluster ${{ vars.ECS_CLUSTER_NAME }} \
+            --service ${{ vars.ECS_SERVICE_NAME }} \
+            --task-definition $NEW_TASK_DEF_ARN \
+            --region ${{ secrets.AWS_REGION_APP }}
